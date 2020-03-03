@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from './Nav';
 import Portfolio from './Portfolio';
 import Contacts from './Contacts';
+import ViewWork from './ViewWork';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,17 +14,19 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <Nav onMenuSelect={this.handleNavMenuSelect} />
+      // <div className="container-fluid">
+      //   <div className="row">
+      //     <Nav onMenuSelect={this.handleNavMenuSelect} />
 
-          <main className="col-md-9 ml-sm-auto">
-            <div className="pl-lg-5 pl-xl-0 pr-lg-5">
-              {this.renderNavPage()}
-            </div>
-          </main>
-        </div>
-      </div>
+      //     <main className="col-md-9 ml-sm-auto">
+      //       <div className="pl-lg-5 pl-xl-0 pr-lg-5">
+      //         {this.renderNavPage()}
+      //       </div>
+      //     </main>
+      //   </div>
+      // </div>
+
+      <ViewWork />
     );
   }
 

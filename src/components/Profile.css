@@ -6,7 +6,7 @@
   margin-bottom: 1.5rem;
 }
 
-.Profile-Btn {
+/* .Profile-Btn {
   background-color: #42ba96 !important;
   border-color: #42ba96 !important;
 }
@@ -18,7 +18,7 @@
 
 .Profile-Btn:active {
   background-color: #359478 !important;
-}
+} */
 
 @media (max-width: 960px) {
   .Profile-Btn > i {

@@ -72,6 +72,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-chevron-right:before {
+  content: "\e902";
+}
+
+.icon-chevron-left:before {
+  content: "\e903";
+}
+
 .icon-chevrons-left:before {
   content: "\e901";
 }
@@ -84,8 +92,24 @@
   content: "\e945";
 }
 
+.icon-display:before {
+  content: "\e956";
+}
+
+.icon-mobile:before {
+  content: "\e958";
+}
+
+.icon-mobile2:before {
+  content: "\e959";
+}
+
 .icon-eye:before {
   content: "\e9ce";
+}
+
+.icon-embed2:before {
+  content: "\ea80";
 }
 
 .icon-vk:before {
@@ -100,7 +124,29 @@
   content: "\eac5";
 }
 
+.icon-html-five:before {
+  content: "\eae4";
+}
+
+.icon-html-five2:before {
+  content: "\eae5";
+}
+
 /* Custom */
+
+.btn-success {
+  background-color: #42ba96 !important;
+  border-color: #42ba96 !important;
+}
+
+.btn-success:hover {
+  background-color: #389e7f !important;
+  border-color: #389e7f !important;
+}
+
+.btn-success:active {
+  background-color: #359478 !important;
+}
 
 body {
   color: #1e1f26;
@@ -128,6 +174,11 @@ h6 {
   h1 {
     font-size: 2.25rem;
   }
+}
+
+.Icon {
+  line-height: 1.6;
+  vertical-align: bottom;
 }
 
 .ImgWrap img {
@@ -173,4 +224,78 @@ h6 {
   flex-flow: wrap column;
   justify-content: space-between;
   align-items: center;
+}
+
+/**************/
+
+.NavWork {
+  color: #869ab8;
+  background-color: #283655;
+}
+
+.NavWork-Inner,
+.NavWork-Menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.NavWork-Inner {
+  height: 54px;
+  position: relative;
+  border-bottom: 1px solid #fff;
+}
+
+/* Абсолютное позиционирование + transform делают иконки размытыми */
+.NavWork-Menu {
+  margin-top: 5px;
+  margin-left: 11rem;
+  font-size: 20px;
+}
+
+.NavWork-Menu > .Menu-Item:nth-child(1) {
+  font-size: 32px;
+}
+
+.NavWork-Link,
+.NavWork-Link:hover,
+.NavWork-Menu .Menu-Link,
+.NavWork-Menu .Menu-Link:hover {
+  color: inherit;
+}
+
+.NavWork-Menu .Menu-Link {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  text-decoration: none;
+}
+
+.NavWork-Menu .Menu-Link_active {
+  color: #f7f7f7;
+  pointer-events: none;
+}
+
+/**************/
+
+.Iframe {
+  width: 100%;
+  height: calc(100% - 54px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 54px;
+  border: none;
+}
+
+.Iframe_mobile {
+  width: 424px;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+}
+
+@media (max-width: 425px) {
+  .Iframe_mobile {
+    width: 100%;
+  }
 }
