@@ -1,0 +1,44 @@
+.Burger {
+  display: flex;
+  flex-flow: wrap column;
+  justify-content: space-between;
+  height: 36px;
+  position: absolute;
+  top: 38px;
+  right: 15px;
+  z-index: 10;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid #1e1f26;
+  border-radius: 0.25rem;
+}
+
+.Burger-Stuffing {
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background-color: #1e1f26;
+  transition: transform 0.25s ease-in-out, width 0.25s ease-in-out;
+}
+
+.Burger_active {
+  border-color: #fff;
+}
+
+.Burger_active .Burger-Stuffing {
+  background-color: #fff;
+}
+
+.Burger_active .Burger-Stuffing:nth-child(1) {
+  transform: translate3d(0, 8px, 0) rotate3d(0, 0, 1, 45deg);
+}
+
+.Burger_active .Burger-Stuffing:nth-child(2) {
+  width: 0;
+}
+
+.Burger_active .Burger-Stuffing:nth-child(3) {
+  transform: translate3d(0, -8px, 0) rotate3d(0, 0, 1, -45deg);
+}
