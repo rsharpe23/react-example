@@ -1,125 +1,21 @@
 .Nav {
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  color: #fff;
+  color: #f7f7f7;
   background-color: #283655;
-  transition: transform 0.5s ease-in-out;
-}
-
-@media (max-width: 768px) {
-  .Nav {
-    padding-right: 24px;
-    padding-left: 24px;
-    transform: translate3d(calc(-100% + 24px), 0, 0);
-  }
-}
-
-.Nav_active {
-  transform: translate3d(0, 0, 0);
-}
-
-.Nav_active .Nav-Chevron > i:nth-child(1) {
-  display: none;
-}
-
-.Nav_active .Nav-Chevron > i:nth-child(2) {
-  display: inline;
-}
-
-.Nav-Area {
-  height: 100%;
-  padding-top: 1.25rem;
-}
-
-.Nav-Chevron {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 24px;
-  height: 100%;
-  background-color: #42ba96;
-  cursor: pointer;
-}
-
-.Nav-Chevron > i:nth-child(1) {
-  display: inline;
-}
-
-.Nav-Chevron > i:nth-child(2) {
-  display: none;
-}
-
-.Nav-Link,
-.Nav-Link:hover {
-  color: inherit;
-}
-
-.Nav-Menu {
-  margin-bottom: auto;
-  color: #869ab8;
 }
 
 .Nav-Menu .Menu-Item {
-  text-align: center;
+  color: #869ab8;
 }
 
+.Nav-Link,
 .Nav-Menu .Menu-Link {
-  display: inline-block;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  color: inherit;
+  color: inherit !important;
 }
 
 .Nav-Menu .Menu-Link_active {
-  color: #f7f7f7;
+  color: #f7f7f7 !important;
   font-weight: 700;
   text-decoration: none;
   letter-spacing: 0.5px;
   pointer-events: none;
 }
-
-/* .Nav {
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  padding-top: 1.25rem;
-  color: #fff;
-  background-color: #283655;
-}
-
-.Nav-Link,
-.Nav-Link:hover {
-  color: inherit;
-}
-
-.Nav-Menu {
-  margin-bottom: auto;
-  color: #869ab8;
-}
-
-.Nav-Menu .Menu-Item {
-  text-align: center;
-}
-
-.Nav-Menu .Menu-Link {
-  display: inline-block;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  color: inherit;
-}
-
-.Nav-Menu .Menu-Link_active {
-  color: #f7f7f7;
-  font-weight: 700;
-  text-decoration: none;
-  letter-spacing: 0.5px;
-  pointer-events: none;
-} */

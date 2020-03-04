@@ -55,20 +55,6 @@ class Menu extends React.Component {
     this.setState({ activeIndex: newIndex });
     onSelect && onSelect(newIndex);
   }
-
-  // handleActiveIndex(e) {
-  //   e.originalEvent.preventDefault();
-  //   this.setActiveIndex(e.index);
-  // }
-
-  // setActiveIndex(newIndex) {
-  //   const { selectable, onSelect } = this.props;
-
-  //   if (selectable) {
-  //     this.setState({ activeIndex: newIndex });
-  //     onSelect && onSelect(newIndex);
-  //   }
-  // }
 }
 
 export default Menu;

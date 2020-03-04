@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import DataStore from './DataStore';
 
-class DataStoreNav extends DataStore {
+class DataStoreHomeNav extends DataStore {
   constructor(url, options) {
     super(url, options);
 
@@ -37,4 +37,4 @@ class DataStoreNav extends DataStore {
   }
 }
 
-export default new DataStoreNav('', null);
+export default new DataStoreHomeNav('', null);

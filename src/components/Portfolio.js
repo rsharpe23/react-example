@@ -10,13 +10,14 @@ class Portfolio extends React.Component {
   constructor(props) {
     super(props);
 
+    this.handleLinkClick = this.handleLinkClick.bind(this);
+    this.handleMenuSelect = this.handleMenuSelect.bind(this);
+    this.handleWorkClick = this.handleWorkClick.bind(this);
+
     this.state = { 
       data: null, 
       selectedWorks: [],
     };
-
-    this.handleLinkClick = this.handleLinkClick.bind(this);
-    this.handleMenuSelect = this.handleMenuSelect.bind(this);
   }
 
   render() {
@@ -40,7 +41,10 @@ class Portfolio extends React.Component {
           <div className="row">
             {this.state.selectedWorks.map(work => (
               <div className="col-lg-6" key={work.id}>
-                <Work className="Work Portfolio-Work" value={work} />
+                <Work 
+                  className="Work Portfolio-Work" 
+                  value={work} 
+                  onClick={this.handleWorkClick} />
               </div>
             ))}
           </div>
@@ -75,6 +79,11 @@ class Portfolio extends React.Component {
       .filter(work => work.type & requiredWorkType);
 
     this.setState({ selectedWorks });
+  }
+
+  handleWorkClick(work) {
+    const { onWorkClick } = this.props;
+    onWorkClick && onWorkClick(work);
   }
 }
 

@@ -7,6 +7,7 @@ import './Work.css';
 class Work extends React.Component {
   constructor(props) {
     super(props);
+    this.handleClick = this.handleClick.bind(this);
     this.state = { thumbnail: defaultImg };
   }
 
@@ -18,7 +19,7 @@ class Work extends React.Component {
 
     return (
       <figure className={className}>
-        <a href="#" className="ImgWrap Work-Link">
+        <a href="#" className="ImgWrap Work-Link" onClick={this.handleClick}>
           <img src={this.state.thumbnail} alt={title} />
 
           <div
@@ -28,7 +29,7 @@ class Work extends React.Component {
 
         <figcaption className="Work-Caption">
           <span>{title}</span>
-          <span>{price}</span>
+          <span>$<strong>{price}</strong></span>
         </figcaption>
       </figure>
     );
@@ -40,6 +41,12 @@ class Work extends React.Component {
         ({ default: thumbnail }) => this.setState({ thumbnail }),
         err => false
       );
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    const { onClick, value } = this.props;
+    onClick && onClick(value);
   }
 }
 

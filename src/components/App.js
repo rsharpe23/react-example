@@ -1,57 +1,59 @@
 import React from 'react';
-import Nav from './Nav';
-import Portfolio from './Portfolio';
-import Contacts from './Contacts';
-import ViewWork from './ViewWork';
+import Home from './Home';
+import Preview from './Preview';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { navMenuIndex: -1 };
-    this.handleNavMenuSelect = this.handleNavMenuSelect.bind(this);
-    this.handleScreenLinkClick = this.handleScreenLinkClick.bind(this);
+
+    this.handleHomePortfolioWorkClick = this.handleHomePortfolioWorkClick.bind(this);
+    this.handlePreviewNavControlClick = this.handlePreviewNavControlClick.bind(this);
+
+    this.state = {
+      options: { 
+        pageNum: 1, 
+        screenNum: 1,
+      },
+    };
   }
 
   render() {
-    return (
-      // <div className="container-fluid">
-      //   <div className="row">
-      //     <Nav onMenuSelect={this.handleNavMenuSelect} />
-
-      //     <main className="col-md-9 ml-sm-auto">
-      //       <div className="pl-lg-5 pl-xl-0 pr-lg-5">
-      //         {this.renderNavPage()}
-      //       </div>
-      //     </main>
-      //   </div>
-      // </div>
-
-      <ViewWork />
-    );
+    return this.renderPage();
   }
 
-  // TODO: Добавить кейс CV
-  renderNavPage() {
-    switch (this.state.navMenuIndex) {
-      case 0:
-        return <Portfolio onLinkClick={this.handleScreenLinkClick} />;
+  renderPage() {
+    const { options } = this.state;
 
+    switch (options.pageNum) {
       case 1:
-        return <Contacts onLinkClick={this.handleScreenLinkClick} />;
+        return (
+          <Home
+            screenNum={options.screenNum}
+            onPortfolioWorkClick={this.handleHomePortfolioWorkClick} />
+        );
+
+      case 2:
+        return (
+          <Preview
+            work={options.work}
+            onNavControlClick={this.handlePreviewNavControlClick} />
+        );
 
       default:
         return null;
     }
   }
 
-  handleNavMenuSelect(index) {
-    this.setState({ navMenuIndex: index });
+  handleHomePortfolioWorkClick(work) {
+    this.setState({
+      options: { pageNum: 2, work },
+    });
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  handleScreenLinkClick(navMenuItemIndex) {
-    document.querySelector(`.Nav-Menu > .Menu-Item:nth-child(${navMenuItemIndex}) > a`)
-      .click();
+  handlePreviewNavControlClick(screenNum) {
+    this.setState({
+      options: { pageNum: 1, screenNum },
+    });
   }
 }
 

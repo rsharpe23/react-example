@@ -41,7 +41,7 @@ class DataStorePortfolio extends DataStore {
             <p>Верстка + интеграция на WordPress.<br>
               БЭМ-именование, адаптив, flexbox, анимации, счетчик цифр, табы.</p>
           `,
-          price: '$<strong>150</strong>',
+          price: 150,
           url: 'https://rsharpe-blog.ru/projects/swedish-bitter/',
         },
         {
@@ -53,7 +53,7 @@ class DataStorePortfolio extends DataStore {
             <p>Верстка + интеграция на WordPress.<br>
               БЭМ-именование, анимации, адаптив. Плагины: fullpage, scrollpoint, anim-fx, parallax-fx.</p>
           `,
-          price: '$<strong>100</strong>',
+          price: 100,
           url: 'http://rsharpe-blog.ru/projects/voronina/',
         },
         {
@@ -64,7 +64,7 @@ class DataStorePortfolio extends DataStore {
           content: `
             <p>Верстка страницы, БЭМ, анимации, адаптив, scrollpoint, anim-fx, video-player.</p>
           `,
-          price: '$<strong>50</strong>',
+          price: 50,
           url: 'http://rsharpe-blog.ru/projects/odigo/',
         },
         {
@@ -77,7 +77,7 @@ class DataStorePortfolio extends DataStore {
               Адаптив, пользовательские виджеты, пагинация, кнопоки «поделиться в соц. сетях»<br>
               SEO-оптимизация через плагин Yoast SEO.</p>
           `,
-          price: '$<strong>200</strong>',
+          price: 200,
           url: 'https://rsharpe-blog.ru/projects/swedish-bitter/',
         },
         {
@@ -89,7 +89,7 @@ class DataStorePortfolio extends DataStore {
             <p>Плагин для постраничной прокрутки разделов сайта. Альтернатива с лицензией MIT для 
               <a href="https://alvarotrigo.com/fullPage" target="_blank" rel="nofollow">https://alvarotrigo.com/fullPage</a></p>
           `,
-          price: '$<strong>0</strong>',
+          price: 0,
           url: 'https://github.com/rsharpe23/fullpage',
         },
         {
@@ -102,7 +102,7 @@ class DataStorePortfolio extends DataStore {
               Легковесная альтернатива <a href="http://imakewebthings.com/waypoints" target="_blank" rel="nofollow">http://imakewebthings.com/waypoints</a><br>
               с уникальным функционалом.</p>
           `,
-          price: '$<strong>0</strong>',
+          price: 0,
           url: 'https://github.com/rsharpe23/scrollpoint',
         },
         {
@@ -114,7 +114,7 @@ class DataStorePortfolio extends DataStore {
             <p>Плагин добавляет эффект «эхо» после прокрутки DOM-элементов на странице.
               Работает в связке со <a href="#" target="_blank" rel="nofollow">Scrollpoint</a></p>
           `,
-          price: '$<strong>0</strong>',
+          price: 0,
           url: 'https://github.com/rsharpe23/parallax-fx',
         },
         {
@@ -125,7 +125,7 @@ class DataStorePortfolio extends DataStore {
           content: `
             <p>Простой плагин, для выполнения оптимизированных анимационных эффектов на странице.</p>
           `,
-          price: '$<strong>0</strong>',
+          price: 0,
           url: 'https://github.com/rsharpe23/anim-fx',
         },
       ],
