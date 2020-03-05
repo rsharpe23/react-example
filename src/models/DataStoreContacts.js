@@ -12,11 +12,6 @@ class DataStoreContacts extends DataStore {
         <p>Список моих основных контактов:</p>
       `,
 
-      link: {
-        href: '#',
-        text: '⟵ Назад к портфолио',
-      },
-
       menu: [
         {
           href: 'mailto:roman.sharpe23@gmail.com?subject=https://rsharpe.github.io%20|%20Вопрос%20от%20пользователя',
@@ -32,6 +27,11 @@ class DataStoreContacts extends DataStore {
           target: '_blank',
         },
       ],
+
+      link: {
+        href: '#',
+        text: '⟵ Назад к портфолио',
+      },
     };
   }
 }

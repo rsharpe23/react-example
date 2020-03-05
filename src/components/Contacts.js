@@ -32,10 +32,15 @@ class Contacts extends React.Component {
           value={data.menu} />
 
         <div className="Screen-LinkWrap">
-          <a
+          <a 
+            href="#" 
+            className="Screen-Link" 
+            onClick={this.handleLinkClick}>⟵ Назад к портфолио</a>
+
+          {/* <a
             href={data.link.href}
             onClick={this.handleLinkClick}
-            className="Screen-Link">{data.link.text}</a>
+            className="Screen-Link">{data.link.text}</a> */}
         </div>
       </div>
     );

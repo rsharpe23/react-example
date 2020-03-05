@@ -52,9 +52,14 @@ class Portfolio extends React.Component {
 
         <div className="Screen-LinkWrap">
           <a 
+            href="#" 
+            className="Screen-Link" 
+            onClick={this.handleLinkClick}>Заказать работу ⟶</a>
+
+          {/* <a 
             href={data.link.href}
             onClick={this.handleLinkClick}
-            className="Screen-Link">{data.link.text}</a>
+            className="Screen-Link">{data.link.text}</a> */}
         </div>
       </div>
     );

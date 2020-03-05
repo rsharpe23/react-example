@@ -10,8 +10,8 @@ class App extends React.Component {
     this.handlePreviewNavControlClick = this.handlePreviewNavControlClick.bind(this);
 
     this.state = {
-      options: { 
-        pageNum: 1, 
+      options: {
+        pageNum: 1,
         screenNum: 1,
       },
     };
@@ -38,10 +38,9 @@ class App extends React.Component {
             work={options.work}
             onNavControlClick={this.handlePreviewNavControlClick} />
         );
-
-      default:
-        return null;
     }
+
+    return null;
   }
 
   handleHomePortfolioWorkClick(work) {

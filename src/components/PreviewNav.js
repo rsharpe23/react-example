@@ -1,49 +1,66 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
+import { sprintf } from 'sprintf-js';
+import { isEmptyObj, createMarkup } from '@/utils';
+import dataStore from '@models/DataStorePreviewNav';
 import Nav from './Nav';
 import Menu from './Menu';
 
 class PreviewNav extends React.Component {
   constructor(props) {
     super(props);
+
     this.handleMenuSelect = this.handleMenuSelect.bind(this);
     this.handleControlClick = this.handleControlClick.bind(this);
+
+    this.state = { data: null };
   }
 
   render() {
+    const { data } = this.state;
+
+    if (!data || isEmptyObj(data)) {
+      return null;
+    }
+
+    const { workInfo } = this.props;
+
     return (
       <Nav className="Nav Preview-Nav">
         <div className="container-fluid Nav-Inner">
-          <a 
-            href="#" 
-            onClick={this.handleControlClick}
-            className="Nav-Link">⟵ Другие работы</a>
+          <a
+            href={data.controls[0].href}
+            className="Nav-Link"
+            onClick={e => this.handleControlClick({ originalEvent: e, screenNum: 1 })}
+            dangerouslySetInnerHTML={createMarkup(data.controls[0].text)} />
 
-          <Menu 
-            className="d-none d-md-flex Menu Nav-Menu" 
-            value={[
-              {
-                href: '#',
-                text: '<i class="icon-display"></i>',
-              },
-              {
-                href: '#',
-                text: '<i class="icon-mobile"></i>',
-              },
-            ]} 
+          <Menu
+            className="d-none d-md-flex Menu Nav-Menu"
+            value={data.menu}
             activeIndex="0"
             onSelect={this.handleMenuSelect} />
 
           <div>
-            <span className="mr-2 d-none d-md-inline">Разработка от 3х дней</span>
+            <span
+              className="mr-2 d-none d-md-inline"
+            >{sprintf(data.label, workInfo.daysAmount)}</span>
 
-            <a 
-              href="#"
+            <a
+              href={data.controls[1].href}
               className="btn btn-success"
-              onClick={this.handleControlClick}><i className="icon-embed2 Icon"></i> Заказать $<strong>100</strong></a>
+              onClick={e => this.handleControlClick({ originalEvent: e, screenNum: 2 })}
+              dangerouslySetInnerHTML={createMarkup(
+                sprintf(data.controls[1].text, workInfo.price)
+              )} />
           </div>
         </div>
       </Nav>
     );
+  }
+
+  componentDidMount() {
+    dataStore.request()
+      .then(data => this.setState({ data }));
   }
 
   handleMenuSelect(index) {
@@ -51,9 +68,10 @@ class PreviewNav extends React.Component {
     onMenuSelect && onMenuSelect(index);
   }
 
-  handleControlClick(value) {
+  handleControlClick({ originalEvent: e, screenNum }) {
+    e.preventDefault();
     const { onControlClick } = this.props;
-    onControlClick && onControlClick(value);
+    onControlClick && onControlClick(screenNum);
   }
 }
 

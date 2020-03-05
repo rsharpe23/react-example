@@ -38,10 +38,10 @@ class Menu extends React.Component {
     return className;
   }
 
-  handleActiveIndex(e) {
+  handleActiveIndex({ originalEvent: e, index }) {
     if (~this.state.activeIndex) {
-      e.originalEvent.preventDefault();
-      this.setActiveIndex(e.index);
+      e.preventDefault();
+      this.setActiveIndex(index);
     }
   }
 

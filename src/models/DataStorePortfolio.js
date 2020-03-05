@@ -7,11 +7,6 @@ class DataStorePortfolio extends DataStore {
     this._data = {
       title: 'Мои работы',
 
-      link: {
-        href: '#',
-        text: 'Заказать работу ⟶',
-      },
-
       menu: [
         {
           href: '#',
@@ -42,6 +37,7 @@ class DataStorePortfolio extends DataStore {
               БЭМ-именование, адаптив, flexbox, анимации, счетчик цифр, табы.</p>
           `,
           price: 150,
+          daysAmount: 7,
           url: 'https://rsharpe-blog.ru/projects/swedish-bitter/',
         },
         {
@@ -54,6 +50,7 @@ class DataStorePortfolio extends DataStore {
               БЭМ-именование, анимации, адаптив. Плагины: fullpage, scrollpoint, anim-fx, parallax-fx.</p>
           `,
           price: 100,
+          daysAmount: 5,
           url: 'http://rsharpe-blog.ru/projects/voronina/',
         },
         {
@@ -65,6 +62,7 @@ class DataStorePortfolio extends DataStore {
             <p>Верстка страницы, БЭМ, анимации, адаптив, scrollpoint, anim-fx, video-player.</p>
           `,
           price: 50,
+          daysAmount: 3,
           url: 'http://rsharpe-blog.ru/projects/odigo/',
         },
         {
@@ -78,7 +76,8 @@ class DataStorePortfolio extends DataStore {
               SEO-оптимизация через плагин Yoast SEO.</p>
           `,
           price: 200,
-          url: 'https://rsharpe-blog.ru/projects/swedish-bitter/',
+          daysAmount: 7,
+          url: 'https://rsharpe-blog.ru/',
         },
         {
           id: 5,
@@ -90,7 +89,8 @@ class DataStorePortfolio extends DataStore {
               <a href="https://alvarotrigo.com/fullPage" target="_blank" rel="nofollow">https://alvarotrigo.com/fullPage</a></p>
           `,
           price: 0,
-          url: 'https://github.com/rsharpe23/fullpage',
+          daysAmount: 14,
+          url: 'https://rsharpe-blog.ru/projects/fullpage/',
         },
         {
           id: 6,
@@ -103,7 +103,8 @@ class DataStorePortfolio extends DataStore {
               с уникальным функционалом.</p>
           `,
           price: 0,
-          url: 'https://github.com/rsharpe23/scrollpoint',
+          daysAmount: 10,
+          url: 'https://rsharpe-blog.ru/projects/scrollpoint/',
         },
         {
           id: 7,
@@ -115,7 +116,8 @@ class DataStorePortfolio extends DataStore {
               Работает в связке со <a href="#" target="_blank" rel="nofollow">Scrollpoint</a></p>
           `,
           price: 0,
-          url: 'https://github.com/rsharpe23/parallax-fx',
+          daysAmount: 1,
+          url: 'https://rsharpe-blog.ru/projects/parallax-fx/',
         },
         {
           id: 8,
@@ -126,9 +128,15 @@ class DataStorePortfolio extends DataStore {
             <p>Простой плагин, для выполнения оптимизированных анимационных эффектов на странице.</p>
           `,
           price: 0,
-          url: 'https://github.com/rsharpe23/anim-fx',
+          daysAmount: 1,
+          url: 'https://rsharpe-blog.ru/projects/anim-fx/',
         },
       ],
+
+      link: {
+        href: '#',
+        text: 'Заказать работу ⟶',
+      },
     };
   }
 }

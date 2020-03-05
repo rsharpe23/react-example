@@ -15,7 +15,7 @@ class DataStoreHomeNav extends DataStore {
 
         link: {
           href: 'https://github.com/rsharpe23',
-          text: '<i class="icon-github"></i> Профиль GitHub',
+          text: '<i class="icon-github Icon"></i> Профиль GitHub',
         },
       },
 
@@ -28,10 +28,6 @@ class DataStoreHomeNav extends DataStore {
           href: '#',
           text: 'Контакты',
         },
-        // {
-        //   href: '#',
-        //   text: 'CV',
-        // },
       ],
     };
   }

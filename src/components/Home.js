@@ -11,7 +11,7 @@ class Home extends React.Component {
     this.handleScreenLinkClick = this.handleScreenLinkClick.bind(this);
     this.handlePortfolioWorkClick = this.handlePortfolioWorkClick.bind(this);
 
-    this.state = { screenNum: this.props.screenNum };
+    this.state = { screenNum: 0 };
   }
 
   render() {
@@ -44,10 +44,9 @@ class Home extends React.Component {
           <Contacts
             onLinkClick={this.handleScreenLinkClick} />
         );
-
-      default:
-        return null;
     }
+
+    return null;
   }
 
   handleNavMenuSelect(index) {
