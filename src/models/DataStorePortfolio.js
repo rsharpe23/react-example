@@ -51,7 +51,7 @@ class DataStorePortfolio extends DataStore {
           `,
           price: 100,
           daysAmount: 5,
-          url: 'http://rsharpe-blog.ru/projects/voronina/',
+          url: 'https://rsharpe-blog.ru/projects/voronina/',
         },
         {
           id: 3,
@@ -63,7 +63,7 @@ class DataStorePortfolio extends DataStore {
           `,
           price: 50,
           daysAmount: 3,
-          url: 'http://rsharpe-blog.ru/projects/odigo/',
+          url: 'https://rsharpe-blog.ru/projects/odigo/',
         },
         {
           id: 4,
