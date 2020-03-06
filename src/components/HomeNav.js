@@ -13,7 +13,10 @@ class HomeNav extends React.Component {
     this.handleMenuSelect = this.handleMenuSelect.bind(this);
     this.handleChevronClick = this.handleChevronClick.bind(this);
 
-    this.state = { data: null };
+    this.state = { 
+      data: null, 
+      isActive: false,
+    };
   }
 
   render() {
@@ -24,14 +27,14 @@ class HomeNav extends React.Component {
     }
 
     return (
-      <Nav className="col-md-3 col-xl-2 Nav Home-Nav">
+      <Nav className={this.getClassName()}>
         <div className="Nav-Area">
           <Profile value={data.profile} />
 
           <Menu
             className="Menu Nav-Menu"
             value={data.menu}
-            activeIndex="0"
+            activeIndex={this.props.menuIndex}
             onSelect={this.handleMenuSelect} />
 
           <footer className="Nav-Footer">
@@ -49,6 +52,16 @@ class HomeNav extends React.Component {
     );
   }
 
+  getClassName() {
+    let className = 'col-md-3 col-xl-2 Nav Home-Nav';
+
+    if (this.state.isActive) {
+      className += ' Home-Nav_active';
+    }
+
+    return className;
+  }
+
   componentDidMount() {
     dataStore.request()
       .then(data => this.setState({ data }));
@@ -57,16 +70,19 @@ class HomeNav extends React.Component {
   handleMenuSelect(index) {
     const { onMenuSelect } = this.props;
     onMenuSelect && onMenuSelect(index);
+    this.resetActiveState();
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  resetActiveState() {
+    if (this.state.isActive) {
+      this.setState({ isActive: false });
+    }
+  }
+
   handleChevronClick() {
-    const { classList } = document.querySelector('Home-Nav');
-
-    const action = classList
-      .contains('Nav_active') ? 'remove' : 'add';
-
-    classList[action]('Nav_active');
+    this.setState({ 
+      isActive: !this.state.isActive,
+    });
   }
 }
 

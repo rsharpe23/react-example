@@ -6,7 +6,6 @@ import './Menu.css';
 class Menu extends React.Component {
   constructor(props) {
     super(props);
-    this.handleLinkClick = this.handleLinkClick.bind(this);
     this.state = { activeIndex: -1 };
   }
 
@@ -21,7 +20,7 @@ class Menu extends React.Component {
               href={link.href}
               className={this.getLinkClassNameBy(index)}
               target={link.target || '_self'}
-              onClick={e => this.handleLinkClick({ originalEvent: e, index })}
+              onClick={e => this.handleActiveIndex({ originalEvent: e, index })}
               dangerouslySetInnerHTML={createMarkup(link.text)} />
           </li>
         ))}
@@ -39,34 +38,30 @@ class Menu extends React.Component {
     return className;
   }
 
-  componentDidMount() {
-    const activeIndex = +this.props.activeIndex;
-
-    if (!Number.isNaN(activeIndex)) {
-      this.setActiveIndex(activeIndex);
+  handleActiveIndex({ originalEvent: e, index }) {
+    if (~this.state.activeIndex) {
+      e.preventDefault();
+      this.setActiveIndex(index);
     }
+  }
+
+  componentDidMount() {
+    // let { activeIndex } = this.props;
+
+    // if (activeIndex == null) {
+    //   return;
+    // }
+
+    // typeof activeIndex == 'string' 
+    //   && (activeIndex = +activeIndex);
+    
+    // this.setActiveIndex(activeIndex);
   }
 
   setActiveIndex(newIndex) {
-    this.setState({ activeIndex: newIndex });
     const { onSelect } = this.props;
+    this.setState({ activeIndex: newIndex });
     onSelect && onSelect(newIndex);
-  }
-
-  componentDidUpdate(prevProps) {
-    const { activeIndex } = this.props;
-
-    // Без проверки будет бесконечное зацикливание
-    if (activeIndex !== prevProps.activeIndex) {
-      this.setActiveIndex(activeIndex);
-    }
-  }
-
-  handleLinkClick(e) {
-    if (~this.state.activeIndex) {
-      e.originalEvent.preventDefault();
-      this.setActiveIndex(e.index);
-    }
   }
 }
 

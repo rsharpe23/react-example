@@ -52,14 +52,9 @@ class Portfolio extends React.Component {
 
         <div className="Screen-LinkWrap">
           <a 
-            href="#" 
-            className="Screen-Link" 
-            onClick={this.handleLinkClick}>Заказать работу ⟶</a>
-
-          {/* <a 
             href={data.link.href}
             onClick={this.handleLinkClick}
-            className="Screen-Link">{data.link.text}</a> */}
+            className="Screen-Link">{data.link.text}</a>
         </div>
       </div>
     );
@@ -73,7 +68,7 @@ class Portfolio extends React.Component {
   handleLinkClick(e) {
     e.preventDefault();
     const { onLinkClick } = this.props;
-    onLinkClick && onLinkClick(2);
+    onLinkClick && onLinkClick(1);
   }
 
   handleMenuSelect(index) {

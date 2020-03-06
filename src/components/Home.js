@@ -2,6 +2,7 @@ import React from 'react';
 import HomeNav from './HomeNav';
 import Portfolio from './Portfolio';
 import Contacts from './Contacts';
+import './Home.css';
 
 class Home extends React.Component {
   constructor(props) {
@@ -11,14 +12,18 @@ class Home extends React.Component {
     this.handleScreenLinkClick = this.handleScreenLinkClick.bind(this);
     this.handlePortfolioWorkClick = this.handlePortfolioWorkClick.bind(this);
 
-    this.state = { screenNum: 0 };
+    this.state = { 
+      navMenuIndex: this.props.navMenuIndex,
+    };
   }
 
   render() {
     return (
       <div className="container-fluid Home">
         <div className="row">
-          <HomeNav onMenuSelect={this.handleNavMenuSelect} />
+          <HomeNav 
+            menuIndex={this.state.navMenuIndex} 
+            onMenuSelect={this.handleNavMenuSelect} />
 
           <main className="col-md-9 ml-sm-auto">
             <div className="pl-lg-5 pl-xl-0 pr-lg-5">
@@ -31,15 +36,15 @@ class Home extends React.Component {
   }
 
   renderScreen() {
-    switch (this.state.screenNum) {
-      case 1:
+    switch (this.state.navMenuIndex) {
+      case 0:
         return (
           <Portfolio
             onLinkClick={this.handleScreenLinkClick}
             onWorkClick={this.handlePortfolioWorkClick} />
         );
 
-      case 2:
+      case 1:
         return (
           <Contacts
             onLinkClick={this.handleScreenLinkClick} />
@@ -50,13 +55,11 @@ class Home extends React.Component {
   }
 
   handleNavMenuSelect(index) {
-    this.setState({ screenNum: index + 1 });
+    this.setState({ navMenuIndex: index });
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  handleScreenLinkClick(navMenuItemIndex) {
-    document.querySelector(`.Nav-Menu > .Menu-Item:nth-child(${navMenuItemIndex}) > a`)
-      .click();
+  handleScreenLinkClick(navMenuIndex) {
+    this.setState({ navMenuIndex });
   }
 
   handlePortfolioWorkClick(work) {

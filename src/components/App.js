@@ -12,7 +12,7 @@ class App extends React.Component {
     this.state = {
       options: {
         pageNum: 1,
-        screenNum: 1,
+        homeNavMenuIndex: 0,
       },
     };
   }
@@ -28,7 +28,7 @@ class App extends React.Component {
       case 1:
         return (
           <Home
-            screenNum={options.screenNum}
+            navMenuIndex={options.homeNavMenuIndex}
             onPortfolioWorkClick={this.handleHomePortfolioWorkClick} />
         );
 
@@ -49,9 +49,9 @@ class App extends React.Component {
     });
   }
 
-  handlePreviewNavControlClick(screenNum) {
+  handlePreviewNavControlClick(homeNavMenuIndex) {
     this.setState({
-      options: { pageNum: 1, screenNum },
+      options: { pageNum: 1, homeNavMenuIndex },
     });
   }
 }

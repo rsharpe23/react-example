@@ -31,7 +31,7 @@ class PreviewNav extends React.Component {
           <a
             href={data.controls[0].href}
             className="Nav-Link"
-            onClick={e => this.handleControlClick({ originalEvent: e, screenNum: 1 })}
+            onClick={e => this.handleControlClick({ originalEvent: e, homeNavMenuIndex: 0 })}
             dangerouslySetInnerHTML={createMarkup(data.controls[0].text)} />
 
           <Menu
@@ -48,7 +48,7 @@ class PreviewNav extends React.Component {
             <a
               href={data.controls[1].href}
               className="btn btn-success"
-              onClick={e => this.handleControlClick({ originalEvent: e, screenNum: 2 })}
+              onClick={e => this.handleControlClick({ originalEvent: e, homeNavMenuIndex: 1 })}
               dangerouslySetInnerHTML={createMarkup(
                 sprintf(data.controls[1].text, workInfo.price)
               )} />
@@ -68,10 +68,10 @@ class PreviewNav extends React.Component {
     onMenuSelect && onMenuSelect(index);
   }
 
-  handleControlClick({ originalEvent: e, screenNum }) {
-    e.preventDefault();
+  handleControlClick(e) {
+    e.originalEvent.preventDefault();
     const { onControlClick } = this.props;
-    onControlClick && onControlClick(screenNum);
+    onControlClick && onControlClick(e.homeNavMenuIndex);
   }
 }
 

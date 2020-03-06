@@ -45,9 +45,9 @@ class Preview extends React.Component {
     this.setState({ isMobile: !!index });
   }
 
-  handleNavControlClick(screenNum) {
+  handleNavControlClick(homeNavMenuIndex) {
     const { onNavControlClick } = this.props;
-    onNavControlClick && onNavControlClick(screenNum);
+    onNavControlClick && onNavControlClick(homeNavMenuIndex);
   }
 }
 
