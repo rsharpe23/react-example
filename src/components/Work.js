@@ -46,7 +46,15 @@ class Work extends React.Component {
   handleClick(e) {
     e.preventDefault();
     const { onClick, value } = this.props;
-    onClick && onClick(value);
+
+    if (value.isExternal) {
+      window.open(value.url, '_blank');
+    } else {
+      onClick && onClick(value);
+    }
+
+    // const { onClick, value } = this.props;
+    // onClick && onClick(value);
   }
 }
 

@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 
-const MODE = 'development'; // development/production
+const MODE = 'production'; // development/production
 const IS_DEV = (MODE == 'development');
 
 module.exports = {

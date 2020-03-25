@@ -43,7 +43,7 @@ class PreviewNav extends React.Component {
           <div>
             <span
               className="mr-2 d-none d-md-inline"
-            >{sprintf(data.label, workInfo.daysAmount)}</span>
+            >{sprintf(data.label, workInfo.daysPerDev)}</span>
 
             <a
               href={data.controls[1].href}

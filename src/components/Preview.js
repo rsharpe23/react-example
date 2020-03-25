@@ -13,12 +13,12 @@ class Preview extends React.Component {
   }
 
   render() {
-    const { daysAmount, price, url } = this.props.work;
-    
+    const { daysPerDev, price, url } = this.props.work;
+
     return (
       <div className="Preview">
         <PreviewNav
-          workInfo={{ daysAmount, price }}
+          workInfo={{ daysPerDev, price }}
           onMenuSelect={this.handleNavMenuSelect}
           onControlClick={this.handleNavControlClick} />
 
