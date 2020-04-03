@@ -1,0 +1,13 @@
+export const SET_PROFILE = 'SET_PROFILE';
+
+export const ADD_MENU_BY_NAME = 'ADD_MENU_BY_NAME';
+export const CHANGE_MENU_INDEX = 'CHANGE_MENU_INDEX';
+
+export const TOGGLE_HOME_NAV_CHEVRON = 'TOGGLE_HOME_NAV_CHEVRON';
+
+export const ADD_PAGE = 'ADD_PAGE';
+
+export const ADD_UPDATE_WORKS = 'ADD_UPDATE_WORKS';
+export const SELECT_WORK = 'SELECT_WORK';
+
+export const RESET_CURRENT_PAGE = 'RESET_CURRENT_PAGE';

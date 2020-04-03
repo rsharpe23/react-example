@@ -1,56 +1,40 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 import { createMarkup, isEmptyObj } from '@/utils';
-import dataStore from '@models/DataStoreContacts';
-import Menu from './Menu';
+import MenuContainer from '@containers/MenuContainer';
 import './Contacts.css';
 
-class Contacts extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { data: null };
-    this.handleLinkClick = this.handleLinkClick.bind(this);
+function Contacts({ data, onLinkClick }) {
+  if (!data || isEmptyObj(data)) {
+    return null;
   }
 
-  render() {
-    const { data } = this.state;
+  const { title, content } = data;
 
-    if (!data || isEmptyObj(data)) {
-      return null;
-    }
-
-    return (
-      <div className="Screen Contacts">
-        <h1 className="Screen-Title">{data.title}</h1>
-
-        <div
-          className="Contacts-Content"
-          dangerouslySetInnerHTML={createMarkup(data.content)} />
-
-        <Menu 
-          className="Menu Contacts-Menu" 
-          value={data.menu} />
-
-        <div className="Screen-LinkWrap">
-          <a
-            href={data.link.href}
-            onClick={this.handleLinkClick}
-            className="Screen-Link">{data.link.text}</a>
-        </div>
-      </div>
-    );
-  }
-
-  componentDidMount() {
-    dataStore.request()
-      .then(data => this.setState({ data }));
-  }
-
-  handleLinkClick(e) {
+  const handleLinkClick = e => {
     e.preventDefault();
-    const { onLinkClick } = this.props;
-    onLinkClick && onLinkClick(0);
-  }
+    onLinkClick && onLinkClick();
+  };
+
+  return (
+    <div className="Screen Contacts">
+      <h1 className="Screen-Title">{title}</h1>
+
+      <div
+        className="Contacts-Content"
+        dangerouslySetInnerHTML={createMarkup(content)} 
+      />
+
+      <MenuContainer 
+        name="contacts" 
+        className="Menu Contacts-Menu" 
+      />
+
+      <div className="Screen-LinkWrap">
+        <a href="#" onClick={handleLinkClick} className="Screen-Link">⟵ Назад к портфолио</a>
+      </div>
+    </div>
+  );
 }
 
 export default Contacts;

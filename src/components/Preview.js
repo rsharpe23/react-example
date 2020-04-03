@@ -1,54 +1,40 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
-import PreviewNav from './PreviewNav';
+import { isEmptyObj } from '@/utils';
+import PreviewNavContainer from '@containers/PreviewNavContainer';
 import './Preview.css';
 
-class Preview extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleNavMenuSelect = this.handleNavMenuSelect.bind(this);
-    this.handleNavControlClick = this.handleNavControlClick.bind(this);
-
-    this.state = { isMobile: false };
+function Preview({ workData, isMobile }) {
+  if (!workData || isEmptyObj(workData)) {
+    return null;
   }
 
-  render() {
-    const { daysPerDev, price, url } = this.props.work;
-
-    return (
-      <div className="Preview">
-        <PreviewNav
-          workInfo={{ daysPerDev, price }}
-          onMenuSelect={this.handleNavMenuSelect}
-          onControlClick={this.handleNavControlClick} />
-
-        <main className="Preview-Main">
-          <div className="position-relative w-100 h-100">
-            <iframe src={url} className={this.getIframeClassName()}></iframe>
-          </div>
-        </main>
-      </div>
-    );
-  }
-
-  getIframeClassName() {
+  const getIframeClass = () => {
     let className = 'Iframe';
 
-    if (this.state.isMobile) {
+    if (isMobile) {
       className += ' Iframe_mobile';
     }
 
     return className;
-  }
+  };
 
-  handleNavMenuSelect(index) {
-    this.setState({ isMobile: !!index });
-  }
+  const { daysPerDev, price, link } = workData;
 
-  handleNavControlClick(homeNavMenuIndex) {
-    const { onNavControlClick } = this.props;
-    onNavControlClick && onNavControlClick(homeNavMenuIndex);
-  }
+  return (
+    <div className="Preview">
+      <PreviewNavContainer 
+        daysPerDev={daysPerDev} 
+        price={price} 
+      />
+
+      <main className="Preview-Main">
+        <div className="position-relative w-100 h-100">
+          <iframe src={link.href} className={getIframeClass()}></iframe>
+        </div>
+      </main>
+    </div>
+  );
 }
 
 export default Preview;

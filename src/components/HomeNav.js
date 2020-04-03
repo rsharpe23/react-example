@@ -1,89 +1,51 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
-import { isEmptyObj } from '@/utils';
-import dataStore from '@models/DataStoreHomeNav';
+import ProfileContainer from '@containers/ProfileContainer';
+import MenuContainer from '@containers/MenuContainer';
 import Nav from './Nav';
-import Profile from './Profile';
-import Menu from './Menu';
 
-class HomeNav extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleMenuSelect = this.handleMenuSelect.bind(this);
-    this.handleChevronClick = this.handleChevronClick.bind(this);
-
-    this.state = { 
-      data: null, 
-      isActive: false,
-    };
-  }
-
-  render() {
-    const { data } = this.state;
-
-    if (!data || isEmptyObj(data)) {
-      return null;
-    }
-
-    return (
-      <Nav className={this.getClassName()}>
-        <div className="Nav-Area">
-          <Profile value={data.profile} />
-
-          <Menu
-            className="Menu Nav-Menu"
-            value={data.menu}
-            activeIndex={this.props.menuIndex}
-            onSelect={this.handleMenuSelect} />
-
-          <footer className="Nav-Footer">
-            <p>© <a href="/" className="Nav-Link">Roman Sharpe</a> {new Date().getFullYear()}</p>
-          </footer>
-        </div>
-
-        <div className="d-block d-md-none">
-          <div className="Nav-Chevron" onClick={this.handleChevronClick}>
-            <i className="icon-chevrons-right"></i>
-            <i className="icon-chevrons-left"></i>
-          </div>
-        </div>
-      </Nav>
-    );
-  }
-
-  getClassName() {
+function HomeNav({ isActive, onChevronToggle }) {
+  const getClass = () => {
     let className = 'col-md-3 col-xl-2 Nav Home-Nav';
 
-    if (this.state.isActive) {
+    if (isActive) {
       className += ' Home-Nav_active';
     }
 
     return className;
-  }
+  };
 
-  componentDidMount() {
-    dataStore.request()
-      .then(data => this.setState({ data }));
-  }
+  const getDate = () => {
+    return new Date().getFullYear();
+  };
 
-  handleMenuSelect(index) {
-    const { onMenuSelect } = this.props;
-    onMenuSelect && onMenuSelect(index);
-    this.resetActiveState();
-  }
+  const handleChevronClick = () => {
+    onChevronToggle && onChevronToggle(!isActive);
+  };
 
-  resetActiveState() {
-    if (this.state.isActive) {
-      this.setState({ isActive: false });
-    }
-  }
+  return (
+    <Nav className={getClass()}>
+      <div className="Nav-Area">
+        <ProfileContainer />
 
-  handleChevronClick() {
-    this.setState({ 
-      isActive: !this.state.isActive,
-    });
-  }
+        <MenuContainer
+          name="homeNav"
+          className="Menu Nav-Menu"
+        />
+
+        <footer className="Nav-Footer">
+          <p>© <a href="/" className="Nav-Link">Roman Sharpe</a> {getDate()}</p>
+        </footer>
+      </div>
+
+      <div className="d-block d-md-none">
+        <div className="Nav-Chevron" onClick={handleChevronClick}>
+          <i className="icon-chevrons-right"></i>
+          <i className="icon-chevrons-left"></i>
+        </div>
+      </div>
+    </Nav>
+  );
 }
 
 export default HomeNav;
