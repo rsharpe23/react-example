@@ -3,29 +3,14 @@ import React from 'react';
 import defaultImg from '@public/img/avatar.png';
 import './Avatar.css';
 
-class Avatar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { url: defaultImg };
-  }
-
-  render() {
-    const { className = 'Avatar ImgWrap' } = this.props;
-
-    return (
-      <div className={className}>
-        <a href="/"><img src={this.state.url} alt="Аватар" /></a>
-      </div>
-    );
-  }
-  
-  componentDidMount() {
-    import(`@public/img/${this.props.url}`)
-      .then(
-        ({ default: url }) => this.setState({ url }),
-        err => false
-      );
-  }
+// Запись: url = defaultImg не подойдет, т.к. url - пустая строка, 
+// а чтобы сработало присвоение по умолчанию, url должен быть undefined
+function Avatar({ className = 'Avatar ImgWrap', url }) {
+  return (
+    <div className={className}>
+      <a href="/"><img src={url || defaultImg} alt="Аватарка" /></a>
+    </div>
+  );
 }
 
 export default Avatar;

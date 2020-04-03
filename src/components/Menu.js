@@ -1,73 +1,47 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
-import { createMarkup } from '@/utils';
+import { createMarkup, isEmptyObj } from '@/utils';
 import './Menu.css';
 
-class Menu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleLinkClick = this.handleLinkClick.bind(this);
-    this.state = { activeIndex: -1 };
+function Menu({ 
+  className = 'Menu', data, activeIndex = -1, onChange,
+}) {
+  if (!data || isEmptyObj(data)) {
+    return null;
   }
 
-  render() {
-    const { className = 'Menu', value } = this.props;
+  const getLinkClass = index => {
+    let linkClass = 'Menu-Link';
 
-    return (
-      <ul className={className}>
-        {value.map((link, index) => (
-          <li key={index} className="Menu-Item">
-            <a
-              href={link.href}
-              className={this.getLinkClassNameBy(index)}
-              target={link.target || '_self'}
-              onClick={e => this.handleLinkClick({ originalEvent: e, index })}
-              dangerouslySetInnerHTML={createMarkup(link.text)} />
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
-  getLinkClassNameBy(index) {
-    let className = 'Menu-Link';
-
-    if (index === this.state.activeIndex) {
-      className += ' Menu-Link_active';
+    if (index === activeIndex) {
+      linkClass += ' Menu-Link_active';
     }
+  
+    return linkClass;
+  };
 
-    return className;
-  }
-
-  componentDidMount() {
-    const activeIndex = +this.props.activeIndex;
-
-    if (!Number.isNaN(activeIndex)) {
-      this.setActiveIndex(activeIndex);
+  const handleLinkClick = (e, index) => {
+    if (~activeIndex) {
+      e.preventDefault();
+      onChange && onChange(index);
     }
-  }
+  };
 
-  setActiveIndex(newIndex) {
-    this.setState({ activeIndex: newIndex });
-    const { onSelect } = this.props;
-    onSelect && onSelect(newIndex);
-  }
-
-  componentDidUpdate(prevProps) {
-    const { activeIndex } = this.props;
-
-    // Без проверки будет бесконечное зацикливание
-    if (activeIndex !== prevProps.activeIndex) {
-      this.setActiveIndex(activeIndex);
-    }
-  }
-
-  handleLinkClick(e) {
-    if (~this.state.activeIndex) {
-      e.originalEvent.preventDefault();
-      this.setActiveIndex(e.index);
-    }
-  }
+  return (
+    <ul className={className}>
+      {data.map((link, index) => (
+        <li key={link.id} className="Menu-Item">
+          <a
+            className={getLinkClass(index)}
+            href={link.href}
+            target={link.target}
+            onClick={e => handleLinkClick(e, index)}
+            dangerouslySetInnerHTML={createMarkup(link.text)}
+          />
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 export default Menu;
