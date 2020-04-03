@@ -1,47 +1,73 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
-import { createMarkup, isEmptyObj } from '@/utils';
+import { createMarkup } from '@/utils';
 import './Menu.css';
 
-function Menu({ 
-  className = 'Menu', data, activeIndex = -1, onChange,
-}) {
-  if (!data || isEmptyObj(data)) {
-    return null;
+class Menu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleLinkClick = this.handleLinkClick.bind(this);
+    this.state = { activeIndex: -1 };
   }
 
-  const getLinkClass = index => {
-    let linkClass = 'Menu-Link';
+  render() {
+    const { className = 'Menu', value } = this.props;
 
-    if (index === activeIndex) {
-      linkClass += ' Menu-Link_active';
+    return (
+      <ul className={className}>
+        {value.map((link, index) => (
+          <li key={index} className="Menu-Item">
+            <a
+              href={link.href}
+              className={this.getLinkClassNameBy(index)}
+              target={link.target || '_self'}
+              onClick={e => this.handleLinkClick({ originalEvent: e, index })}
+              dangerouslySetInnerHTML={createMarkup(link.text)} />
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  getLinkClassNameBy(index) {
+    let className = 'Menu-Link';
+
+    if (index === this.state.activeIndex) {
+      className += ' Menu-Link_active';
     }
-  
-    return linkClass;
-  };
 
-  const handleLinkClick = (e, index) => {
-    if (~activeIndex) {
-      e.preventDefault();
-      onChange && onChange(index);
+    return className;
+  }
+
+  componentDidMount() {
+    const activeIndex = +this.props.activeIndex;
+
+    if (!Number.isNaN(activeIndex)) {
+      this.setActiveIndex(activeIndex);
     }
-  };
+  }
 
-  return (
-    <ul className={className}>
-      {data.map((link, index) => (
-        <li key={link.id} className="Menu-Item">
-          <a
-            className={getLinkClass(index)}
-            href={link.href}
-            target={link.target}
-            onClick={e => handleLinkClick(e, index)}
-            dangerouslySetInnerHTML={createMarkup(link.text)}
-          />
-        </li>
-      ))}
-    </ul>
-  );
+  setActiveIndex(newIndex) {
+    this.setState({ activeIndex: newIndex });
+    const { onSelect } = this.props;
+    onSelect && onSelect(newIndex);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { activeIndex } = this.props;
+
+    // Без проверки будет бесконечное зацикливание
+    if (activeIndex !== prevProps.activeIndex) {
+      this.setActiveIndex(activeIndex);
+    }
+  }
+
+  handleLinkClick(e) {
+    if (~this.state.activeIndex) {
+      e.originalEvent.preventDefault();
+      this.setActiveIndex(e.index);
+    }
+  }
 }
 
 export default Menu;

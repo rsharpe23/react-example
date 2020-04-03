@@ -7,9 +7,9 @@ class DataStore {
     this.options = options;
   }
 
-  request(force = false) {
+  request() {
     return new Promise(resolve => {
-      if (!force && this._data && !isEmptyObj(this._data)) {
+      if (this._data && !isEmptyObj(this._data)) {
         resolve(this._data);
         return;
       }

@@ -1,26 +1,36 @@
+/* eslint-disable import/no-unresolved */
 import DataStore from './DataStore';
 
 class DataStoreHomeNav extends DataStore {
-  constructor() {
-    super('', null);
+  constructor(url, options) {
+    super(url, options);
 
     this._data = {
+      profile: {
+        photoUrl: '',
+        content: `
+          <p>Приветствую Вас!<br>
+            Меня зовут Роман, я front-end разработчик</p>
+        `,
+
+        link: {
+          href: 'https://github.com/rsharpe23',
+          text: '<i class="icon-github Icon"></i> Профиль GitHub',
+        },
+      },
+
       menu: [
         {
-          id: 11,
           href: '#',
           text: 'Портфолио',
-          target: '_self',
         },
         {
-          id: 12,
           href: '#',
           text: 'Контакты',
-          target: '_self',
         },
       ],
     };
   }
 }
 
-export default new DataStoreHomeNav();
+export default new DataStoreHomeNav('', null);

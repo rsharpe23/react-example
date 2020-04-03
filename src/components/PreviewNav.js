@@ -1,40 +1,78 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
-import MenuContainer from '@containers/MenuContainer';
+import { sprintf } from 'sprintf-js';
+import { isEmptyObj, createMarkup } from '@/utils';
+import dataStore from '@models/DataStorePreviewNav';
 import Nav from './Nav';
+import Menu from './Menu';
 
-function PreviewNav({ daysPerDev, price, onLinkClick }) {
-  const handleLinkClick = (e, index) => {
-    e.preventDefault();
-    onLinkClick && onLinkClick(index);
-  };
+class PreviewNav extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <Nav className="Nav Preview-Nav">
-      <div className="container-fluid Nav-Inner">
-        <a
-          href="#"
-          className="Nav-Link"
-          onClick={e => handleLinkClick(e, 0)}
-        >⟵ Другие работы</a>
+    this.handleMenuSelect = this.handleMenuSelect.bind(this);
+    this.handleControlClick = this.handleControlClick.bind(this);
 
-        <MenuContainer
-          name="previewNav"
-          className="d-none d-md-flex Menu Nav-Menu"
-        />
+    this.state = { data: null };
+  }
 
-        <div>
-          <span className="mr-2 d-none d-md-inline">Разработка от {daysPerDev}x дней</span>
+  render() {
+    const { data } = this.state;
 
+    if (!data || isEmptyObj(data)) {
+      return null;
+    }
+
+    const { workInfo } = this.props;
+
+    return (
+      <Nav className="Nav Preview-Nav">
+        <div className="container-fluid Nav-Inner">
           <a
-            href="#"
-            className="btn btn-success"
-            onClick={e => handleLinkClick(e, 1)}
-          ><i className="icon-embed2 Icon"></i> Заказать $<strong>{price}</strong></a>
+            href={data.controls[0].href}
+            className="Nav-Link"
+            onClick={e => this.handleControlClick({ originalEvent: e, homeNavMenuIndex: 0 })}
+            dangerouslySetInnerHTML={createMarkup(data.controls[0].text)} />
+
+          <Menu
+            className="d-none d-md-flex Menu Nav-Menu"
+            value={data.menu}
+            activeIndex="0"
+            onSelect={this.handleMenuSelect} />
+
+          <div>
+            <span
+              className="mr-2 d-none d-md-inline"
+            >{sprintf(data.label, workInfo.daysPerDev)}</span>
+
+            <a
+              href={data.controls[1].href}
+              className="btn btn-success"
+              onClick={e => this.handleControlClick({ originalEvent: e, homeNavMenuIndex: 1 })}
+              dangerouslySetInnerHTML={createMarkup(
+                sprintf(data.controls[1].text, workInfo.price)
+              )} />
+          </div>
         </div>
-      </div>
-    </Nav>
-  );
+      </Nav>
+    );
+  }
+
+  componentDidMount() {
+    dataStore.request()
+      .then(data => this.setState({ data }));
+  }
+
+  handleMenuSelect(index) {
+    const { onMenuSelect } = this.props;
+    onMenuSelect && onMenuSelect(index);
+  }
+
+  handleControlClick(e) {
+    e.originalEvent.preventDefault();
+    const { onControlClick } = this.props;
+    onControlClick && onControlClick(e.homeNavMenuIndex);
+  }
 }
 
 export default PreviewNav;

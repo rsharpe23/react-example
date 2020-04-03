@@ -1,26 +1,36 @@
+/* eslint-disable import/no-unresolved */
 import DataStore from './DataStore';
 
 class DataStorePreviewNav extends DataStore {
-  constructor() {
-    super('', null);
+  constructor(url, options) {
+    super(url, options);
 
     this._data = {
-      menu: [
+      label: 'Разработка от %sx дней',
+
+      controls: [
         {
-          id: 41,
           href: '#',
-          text: '<i class="icon-display"></i>',
-          target: '_self',
+          text: '⟵ Другие работы',
         },
         {
-          id: 42,
+          href: '#',
+          text: '<i class="icon-embed2 Icon"></i> Заказать $<strong>%s</strong>',
+        },
+      ],
+
+      menu: [
+        {
+          href: '#',
+          text: '<i class="icon-display"></i>',
+        },
+        {
           href: '#',
           text: '<i class="icon-mobile"></i>',
-          target: '_self',
         },
       ],
     };
   }
 }
 
-export default new DataStorePreviewNav();
+export default new DataStorePreviewNav('', null);

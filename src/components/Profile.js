@@ -1,36 +1,27 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
-import { createMarkup, isEmptyObj } from '@/utils';
+import { createMarkup } from '@/utils';
 import Avatar from './Avatar';
 import './Profile.css';
 
-function Profile({ data }) {
-  if (!data || isEmptyObj(data)) {
-    return null;
-  }
-
-  const { photoUrl, content, link } = data;
-  
+function Profile({ value: { photoUrl, content, link } }) {
   return (
     <div className="Profile">
-      <Avatar
-        className="Avatar Profile-Avatar ImgWrap"
-        url={photoUrl} 
-      />
+      <Avatar 
+        className="Avatar Profile-Avatar ImgWrap" 
+        url={photoUrl} />
 
       <div
         className="Profile-Content"
-        dangerouslySetInnerHTML={createMarkup(content)} 
-      />
+        dangerouslySetInnerHTML={createMarkup(content)} />
 
       <p>
         <a
           href={link.href}
-          target={link.target}
+          target="_blank"
           rel="nofollow"
           className="btn btn-success Profile-Btn"
-          dangerouslySetInnerHTML={createMarkup(link.text)} 
-        />
+          dangerouslySetInnerHTML={createMarkup(link.text)} />
       </p>
     </div>
   );

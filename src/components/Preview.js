@@ -1,40 +1,54 @@
-/* eslint-disable import/no-unresolved */
 import React from 'react';
-import { isEmptyObj } from '@/utils';
-import PreviewNavContainer from '@containers/PreviewNavContainer';
+import PreviewNav from './PreviewNav';
 import './Preview.css';
 
-function Preview({ workData, isMobile }) {
-  if (!workData || isEmptyObj(workData)) {
-    return null;
+class Preview extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleNavMenuSelect = this.handleNavMenuSelect.bind(this);
+    this.handleNavControlClick = this.handleNavControlClick.bind(this);
+
+    this.state = { isMobile: false };
   }
 
-  const getIframeClass = () => {
+  render() {
+    const { daysPerDev, price, url } = this.props.work;
+
+    return (
+      <div className="Preview">
+        <PreviewNav
+          workInfo={{ daysPerDev, price }}
+          onMenuSelect={this.handleNavMenuSelect}
+          onControlClick={this.handleNavControlClick} />
+
+        <main className="Preview-Main">
+          <div className="position-relative w-100 h-100">
+            <iframe src={url} className={this.getIframeClassName()}></iframe>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  getIframeClassName() {
     let className = 'Iframe';
 
-    if (isMobile) {
+    if (this.state.isMobile) {
       className += ' Iframe_mobile';
     }
 
     return className;
-  };
+  }
 
-  const { daysPerDev, price, link } = workData;
+  handleNavMenuSelect(index) {
+    this.setState({ isMobile: !!index });
+  }
 
-  return (
-    <div className="Preview">
-      <PreviewNavContainer 
-        daysPerDev={daysPerDev} 
-        price={price} 
-      />
-
-      <main className="Preview-Main">
-        <div className="position-relative w-100 h-100">
-          <iframe src={link.href} className={getIframeClass()}></iframe>
-        </div>
-      </main>
-    </div>
-  );
+  handleNavControlClick(homeNavMenuIndex) {
+    const { onNavControlClick } = this.props;
+    onNavControlClick && onNavControlClick(homeNavMenuIndex);
+  }
 }
 
 export default Preview;
