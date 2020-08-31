@@ -1,0 +1,20 @@
+.Profile {
+  display: flex;
+  flex-flow: wrap column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Profile-Content {
+  text-align: center;
+}
+
+.Profile-Avatar {
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 959px) {
+  .Profile-Btn > i {
+    display: none;
+  }
+}
