@@ -1,0 +1,21 @@
+.Nav {
+  color: #fff;
+  background-color: #283655;
+}
+
+.Nav-Menu .Menu-Item {
+  color: #869ab8;
+}
+
+.Nav-Link,
+.Nav-Menu .Menu-Link {
+  color: inherit !important;
+}
+
+.Nav-Menu .Menu-Link_active {
+  color: #f7f7f7 !important;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  pointer-events: none;
+}
