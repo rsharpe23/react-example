@@ -7,7 +7,7 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 
 const MODE = 'development'; // development/production
-const IS_DEV = (MODE == 'development');
+const IS_DEV = (MODE === 'development');
 
 module.exports = {
   mode: MODE,
@@ -30,7 +30,10 @@ module.exports = {
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      '@actions': path.resolve(__dirname, 'src/actions'),
+      '@reducers': path.resolve(__dirname, 'src/reducers'),
       '@components': path.resolve(__dirname, 'src/components'),
+      '@containers': path.resolve(__dirname, 'src/containers'),
       '@models': path.resolve(__dirname, 'src/models'),
       '@public': path.resolve(__dirname, 'public'),
     },
