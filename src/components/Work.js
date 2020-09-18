@@ -25,7 +25,7 @@ function Work({ className = 'Work', data, onClick }) {
   return (
     <figure className={className}>
       <a href="#" className="ImgWrap Work-Link" onClick={handleClick}>
-        <img src={defaultImg} alt={title} />
+        <img src={thumbnail} alt={title} />
 
         <div
           className="Work-Content"
